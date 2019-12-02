@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='ios'>
+    <pages>
+        <page name='Publishers and Subscribers'/>
+        <page name='Linking publishers'/>
+        <page name='Creating an APICall with publishers'/>
+        <page name='Using publishers in real life'/>
+    </pages>
+</playground>
