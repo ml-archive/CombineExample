@@ -57,7 +57,7 @@ let credentialsObserver3: PassthroughSubject<(username: String, password: String
 
 let sub = credentialsObserver3
     .setFailureType(to: Error.self)
-    .flatMap(loginAndFetchUser(username: password: )) // <- Here
+    .flatMap(loginAndFetchUser(username: password: )) // <- Used here in a point-free fashion
     .sink(receiveCompletion: { completion in
         if case .failure(let error) = completion {
             print(error.localizedDescription)

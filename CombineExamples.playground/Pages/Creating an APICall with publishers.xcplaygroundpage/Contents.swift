@@ -33,9 +33,9 @@ struct Response: Decodable {
 let cancellable = URLSession.shared.dataTaskPublisher(for: url)
     .map { data, _ in data }
     .decode(type: Response.self, decoder: JSONDecoder())
-.sink(receiveCompletion: {_ in }, receiveValue: {
-    print($0.value)
-})
+    .sink(receiveCompletion: {_ in }, receiveValue: {
+        print($0.value)
+    })
 
 /// We can wrap that in a function. Since we are mostly interested in the joke here, we'll map the result to use the `\Response.value` KeyPath and again eraseToAnyPublisher
 
@@ -44,7 +44,7 @@ func getJoke() -> AnyPublisher<String, Error> {
         .map { data, _ in data }
         .decode(type: Response.self, decoder: JSONDecoder())
         .map(\.value)
-    .eraseToAnyPublisher()
+        .eraseToAnyPublisher()
     
 }
 
