@@ -5,5 +5,6 @@
         <page name='Linking publishers'/>
         <page name='Creating an APICall with publishers'/>
         <page name='Using publishers in real life'/>
+        <page name='Retain cycles'/>
     </pages>
 </playground>
