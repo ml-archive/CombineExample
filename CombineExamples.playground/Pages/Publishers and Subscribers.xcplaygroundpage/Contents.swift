@@ -38,14 +38,14 @@ textCancellable.cancel()
 /// When you subscribe to a publisher you get a token back, a `Cancellable`. The subscription lives until the Cancellable is deallocated or `.cancel()` is called on it, which means you need to store the cancellable somewhere to get any output. If the cancellable is deallocated, your subscription is terminated
 
 
-func subscribeTo(_ stream: PassthroughSubject<String, Never>) {
-    // since this `localCancellable` is in this functions scope the subscrition is cancelled directly after the function extits
+func subscribe(to stream: PassthroughSubject<String, Never>) {
+    // since this `localCancellable` is in this [functions -> function's] scope the [subscrition -> subscription] is cancelled directly after the function [extits -> exits]
     let localCancellable = stream.sink { text in
             print(text)
     }
 }
 
-subscribeTo(textObserver)
+subscribe(to: textObserver)
 
 textObserver.send("n")
 textObserver.send("e")
@@ -55,7 +55,7 @@ textObserver.send("r")
 
 /// this code block results in no prints since subscribeTo deallocated the subscription on  exit of the scope
 
-func subscribeToWithCancellable(_ stream: PassthroughSubject<String, Never>) -> AnyCancellable {
+func cancellableSubscribe(to stream: PassthroughSubject<String, Never>) -> AnyCancellable {
     // since this `localCancellable` is returned code out side this scope can store and maintain the subscription
     let localCancellable = stream.sink { text in
             print(text)
@@ -64,7 +64,7 @@ func subscribeToWithCancellable(_ stream: PassthroughSubject<String, Never>) -> 
 }
 
 /// here we store the Cancellable, and the subscription is maintained
-textCancellable = subscribeToWithCancellable(textObserver)
+textCancellable = cancellableSubscribe(to: textObserver)
 
 textObserver.send("Cancellable")
 textObserver.send("Persisted")
